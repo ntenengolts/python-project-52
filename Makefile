@@ -2,10 +2,10 @@ install:
 	uv pip install -r requirements.lock
 
 collectstatic:
-	uv python manage.py collectstatic --noinput
+	uv python -- manage.py collectstatic --noinput
 
 migrate:
-	uv python manage.py migrate
+	uv python -- manage.py migrate
 
 build:
 	./build.sh
