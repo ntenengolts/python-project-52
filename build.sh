@@ -7,7 +7,5 @@ uv --version
 
 uv venv
 
-us sync
-
 make install && make collectstatic && make migrate
 
