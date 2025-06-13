@@ -3,9 +3,11 @@
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 
-make install
+uv --version
 
-source /opt/render/project/.venv/bin/activate
+uv venv
 
-make collectstatic && make migrate
+us sync
+
+make install && make collectstatic && make migrate
 
