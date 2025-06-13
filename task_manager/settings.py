@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['webserver']
+ALLOWED_HOSTS = ['python-project-52-t7l1.onrender.com']
 
 
 # Application definition
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f'splite:///{BASE_DIR / "db.sqlite3"}')
+        default=os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}')
     )
 }
 
