@@ -12,7 +12,5 @@ dependencies = [
     "psycopg[binary]"
 ]
 
-requires-python = ">=3.10"
-
 [tool.uv]
 editable-install = true
