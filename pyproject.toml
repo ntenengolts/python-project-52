@@ -11,6 +11,3 @@ dependencies = [
     "dj-database-url",
     "psycopg[binary]"
 ]
-
-[tool.uv]
-editable-install = true
