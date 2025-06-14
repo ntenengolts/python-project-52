@@ -9,5 +9,6 @@ dependencies = [
     "gunicorn",
     "python-dotenv",
     "dj-database-url",
-    "psycopg[binary]"
+    "psycopg[binary]",
+    "django-bootstrap5>=23.1,<24"
 ]
