@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'task_manager.users.apps.UsersConfig',
+    'task_manager.statuses.apps.StatusesConfig',
+    'task_manager.labels.apps.LabelsConfig',
+    'task_manager.tasks.apps.TasksConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +131,5 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
