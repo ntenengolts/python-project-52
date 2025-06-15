@@ -6,6 +6,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+
 
 User = get_user_model()
 
@@ -18,7 +20,7 @@ class UserListView(ListView):
 
 class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'users/user_form.html'
     success_url = reverse_lazy('login')
     success_message = 'Пользователь успешно зарегистрирован'
@@ -26,7 +28,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(SuccessMessageMixin, UpdateView):
     model = User
-    form_class = UserChangeForm
+    form_class = CustomUserChangeForm
     template_name = 'users/user_form.html'
     success_url = reverse_lazy('users:list')
     success_message = 'Пользователь успешно обновлён'
