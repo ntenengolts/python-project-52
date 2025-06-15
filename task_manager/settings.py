@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['python-project-52-t7l1.onrender.com', 'webserver']
 # Application definition
 
 INSTALLED_APPS = [
+    'task_manager.users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
-    'task_manager.users.apps.UsersConfig',
     'task_manager.statuses.apps.StatusesConfig',
     'task_manager.labels.apps.LabelsConfig',
     'task_manager.tasks.apps.TasksConfig',
