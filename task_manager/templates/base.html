@@ -20,9 +20,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users:list' %}">Пользователи</a>
                 </li>
+                <% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'statuses:list' %}">Статусы</a>
                 </li>
+                <% endif %}
             </ul>
         </div>
     </div>
