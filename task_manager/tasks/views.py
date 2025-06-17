@@ -9,17 +9,17 @@ from .forms import TaskForm
 
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
-    template_name = 'task_list.html'
+    template_name = 'tasks_list.html'
     context_object_name = 'tasks'
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
-    template_name = 'task_detail.html'
+    template_name = 'tasks_detail.html'
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task_form.html'
+    template_name = 'tasks_form.html'
     success_url = reverse_lazy('tasks:list')
     success_message = "Задача успешно создана"
 
@@ -30,13 +30,13 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = 'task_form.html'
+    template_name = 'tasks_form.html'
     success_url = reverse_lazy('tasks:list')
     success_message = "Задача успешно обновлена"
 
 class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Task
-    template_name = 'task_confirm_delete.html'
+    template_name = 'tasks_confirm_delete.html'
     success_url = reverse_lazy('tasks:list')
     success_message = "Задача успешно удалена"
 
