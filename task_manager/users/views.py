@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -43,3 +44,9 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
+
+
+class CustomLogoutView(LogoutView):
+    http_method_names = ['get', 'head']
+
+
