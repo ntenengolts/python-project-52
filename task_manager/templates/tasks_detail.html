@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="my-4">{{ object.name }}</h1>
+<ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Описание:</strong> {{ object.description|default:"—" }}</li>
+    <li class="list-group-item"><strong>Статус:</strong> {{ object.status.name }}</li>
+    <li class="list-group-item"><strong>Исполнитель:</strong> {{ object.executor|default:"—" }}</li>
+    <li class="list-group-item"><strong>Автор:</strong> {{ object.author }}</li>
+    <li class="list-group-item"><strong>Создана:</strong> {{ object.created_at|date:"d.m.Y H:i" }}</li>
+</ul>
+<a href="{% url 'tasks:update' object.id %}" class="btn btn-outline-primary">Изменить</a>
+{% if object.author == user %}
+<a href="{% url 'tasks:delete' object.id %}" class="btn btn-outline-danger">Удалить</a>
+{% endif %}
+{% endblock %}
