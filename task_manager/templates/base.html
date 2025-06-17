@@ -11,20 +11,33 @@
         <a class="navbar-brand" href="{% url 'home' %}">Менеджер задач</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:create' %}">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:list' %}">Пользователи</a>
-                </li>
-                <% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'statuses:list' %}">Статусы</a>
-                </li>
-                <% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:create' %}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statuses:list' %}">Статусы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Метки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Задачи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:create' %}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:list' %}">Пользователи</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
