@@ -9,5 +9,5 @@ class Status(models.Model):
         verbose_name = 'Статус'
         verbose_name_plural = 'Статусы'
 
-    def str(self):
+    def __str__(self):
         return self.name
