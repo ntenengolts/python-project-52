@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from statuses.models import Status
+from task_manager.statuses.models import Status
 
 
 User = get_user_model()
