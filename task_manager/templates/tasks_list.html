@@ -4,24 +4,6 @@
 {% block content %}
 <h1>Задачи</h1>
 
-<form method="get">
-  <div class="row mb-3">
-    <div class="col-md-3">
-      {{ filter_form.status }}
-    </div>
-    <div class="col-md-3">
-      {{ filter_form.executor }}
-    </div>
-    <div class="col-md-3">
-      {{ filter_form.label }}
-    </div>
-    <div class="col-md-3">
-      {{ filter_form.only_mine }}
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Показать</button>
-</form>
-
 <table class="table table-striped table-hover mt-4">
   <thead class="table-dark">
     <tr>
