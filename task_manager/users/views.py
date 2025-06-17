@@ -47,7 +47,9 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
 
 
 class CustomLogoutView(LogoutView):
-    def dispath(self, request, *args, **kwargs):
+    http_method_names = ['get']
+
+    def get(self, request, *args, **kwargs):
         massages.success(request, "Вы разлогинились")
         return redirect('login')
 
