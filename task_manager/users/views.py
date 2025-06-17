@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import logout
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -50,7 +50,7 @@ class CustomLogoutView(LogoutView):
     http_method_names = ['get']
 
     def get(self, request, *args, **kwargs):
-        massages.success(request, "Вы разлогинились")
-        return redirect('login')
+        messages.success(request, "Вы разлогинились")
+        return redirect('/')
 
 
