@@ -4,8 +4,8 @@
 {% block content %}
 <h1>Задачи</h1>
 
-<table class="table table-striped table-hover mt-4">
-  <thead class="table-dark">
+<table class="table">
+  <thead>
     <tr>
       <th>ID</th>
       <th>Имя</th>
@@ -26,8 +26,8 @@
       <td>{{ task.executor|default:"—" }}</td>
       <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
       <td>
-        <a href="{% url 'tasks:update' task.id %}" class="btn btn-primary btn-sm">Изменить</a>
-        <a href="{% url 'tasks:delete' task.id %}" class="btn btn-danger btn-sm">Удалить</a>
+        <a href="{% url 'tasks:update' task.pk %}">Изменить</a> | 
+        <a href="{% url 'tasks:delete' task.pk %}">Удалить</a>
       </td>
     </tr>
     {% empty %}
