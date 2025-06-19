@@ -1,27 +1,14 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
+
 {% block content %}
 <h1 class="my-4">
-    {% if object %}Изменение задачи{% else %}Создание задачи{% endif %}
+    {% if object %}Изменение задачи{% else %}Создать задачу{% endif %}
 </h1>
+
 <form method="post">
     {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div class="mb-3">
-        <label for="id_name" class="form-label">Имя</label>
-        {{ form.name|add_class:"form-control" }}
-    </div>
-    <div class="mb-3">
-        <label for="id_description" class="form-label">Описание</label>
-        {{ form.description|add_class:"form-control" }}
-    </div>
-    <div class="mb-3">
-        <label for="id_status" class="form-label">Статус</label>
-        {{ form.status|add_class:"form-select" }}
-    </div>
-    <div class="mb-3">
-        <label for="id_executor" class="form-label">Исполнитель</label>
-        {{ form.executor|add_class:"form-select" }}
-    </div>
+    {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 {% endblock %}

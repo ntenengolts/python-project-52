@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
+from django.contrib import messages
 
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -42,3 +43,7 @@ class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def test_func(self):
         return self.get_object().author == self.request.user
+
+    def handle_no_permission(self):
+        messages.error(self.request, 'Задачу может удалить только её автор')
+        return redirect(self.success_url)
