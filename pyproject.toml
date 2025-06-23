@@ -10,5 +10,6 @@ dependencies = [
     "python-dotenv",
     "dj-database-url",
     "psycopg[binary]",
-    "django-bootstrap5>=25.1"
+    "django-bootstrap5>=25.1",
+    "django-filters"
 ]

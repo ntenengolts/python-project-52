@@ -4,6 +4,17 @@
 {% block content %}
 <h1>Задачи</h1>
 
+<a href="{% url 'tasks:create' %}" class="btn btn-primary mb-4">Создать задачу</a>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <form method="get">
+      {% bootstrap_form filter.form %}
+      <button type="submit" class="btn btn-primary">Показать</button>
+    </form>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -38,5 +49,4 @@
   </tbody>
 </table>
 
-<a href="{% url 'tasks:create' %}" class="btn btn-success">Создать задачу</a>
 {% endblock %}

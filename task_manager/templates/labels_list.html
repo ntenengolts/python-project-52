@@ -2,6 +2,9 @@
 
 {% block content %}
 <h1>Метки</h1>
+
+<a href="{% url 'labels:create' %}" class="btn btn-primary mb-4">Создать метку</a>
+
 <table class="table">
   <thead>
     <tr>
@@ -25,5 +28,5 @@
     {% endfor %}
   </tbody>
 </table>
-<a href="{% url 'labels:create' %}" class="btn btn-success">Создать метку</a>
+
 {% endblock %}

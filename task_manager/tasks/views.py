@@ -6,12 +6,15 @@ from django.urls import reverse_lazy
 from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
+from django_filters.views import FilterView
+from .filters import TaskFilter
 
 
-class TaskListView(LoginRequiredMixin, ListView):
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     template_name = 'tasks_list.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
