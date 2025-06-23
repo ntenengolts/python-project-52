@@ -11,5 +11,5 @@ dependencies = [
     "dj-database-url",
     "psycopg[binary]",
     "django-bootstrap5>=25.1",
-    "django-filters"
+    "django-filter==24.1"
 ]
