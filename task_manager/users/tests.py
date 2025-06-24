@@ -1,7 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-
 
 User = get_user_model()
 
@@ -9,14 +8,17 @@ User = get_user_model()
 class UserCRUDTests(TestCase):
 
     def test_create_user(self):
-        response = self.client.post(reverse("users:create"), {
-            "username": "newuser",
-            "first_name": "New",
-            "last_name": "User",
-            "email": "new@example.com",
-            "password1": "VerySecure123",
-            "password2": "VerySecure123",
-        })
+        response = self.client.post(
+            reverse("users:create"),
+            {
+                "username": "newuser",
+                "first_name": "New",
+                "last_name": "User",
+                "email": "new@example.com",
+                "password1": "VerySecure123",
+                "password2": "VerySecure123",
+            },
+        )
         self.assertRedirects(response, reverse("login"))
         self.assertTrue(User.objects.filter(username="newuser").exists())
 
@@ -27,17 +29,18 @@ class UserCRUDTests(TestCase):
 
     def test_update_user(self):
         user = User.objects.create_user(
-            username="testuser",
-            password="VerySecure123",
-            first_name="OldName"
+            username="testuser", password="VerySecure123", first_name="OldName"
         )
         self.client.force_login(user)
-        response = self.client.post(reverse("users:update", args=[user.id]), {
-            "username": "updateduser",
-            "first_name": "NewName",
-            "last_name": "Updated",
-            "email": "updated@example.com"
-        })
+        response = self.client.post(
+            reverse("users:update", args=[user.id]),
+            {
+                "username": "updateduser",
+                "first_name": "NewName",
+                "last_name": "Updated",
+                "email": "updated@example.com",
+            },
+        )
         self.assertRedirects(response, reverse("users:list"))
 
         user.refresh_from_db()
@@ -58,9 +61,9 @@ class UserCRUDTests(TestCase):
         user2 = User.objects.create_user(username="user2", password="pass")
         self.client.force_login(user1)
 
-        response = self.client.post(reverse("users:update", args=[user2.id]), {
-            "username": "hackeduser"
-        })
+        response = self.client.post(
+            reverse("users:update", args=[user2.id]), {"username": "hackeduser"}
+        )
         self.assertEqual(response.status_code, 403)  # или 302, если редирект
 
     def test_delete_another_user_forbidden(self):

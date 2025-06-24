@@ -1,8 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-from task_manager.statuses.models import Status
 
+from task_manager.statuses.models import Status
 
 User = get_user_model()
 
@@ -28,7 +28,9 @@ class StatusCRUDTests(TestCase):
         self.assertTrue(Status.objects.filter(name="New").exists())
 
     def test_update_status(self):
-        response = self.client.post(reverse("statuses:update", args=[self.status.id]), {"name": "Updated"})
+        response = self.client.post(
+            reverse("statuses:update", args=[self.status.id]), {"name": "Updated"}
+        )
         self.assertRedirects(response, reverse("statuses:list"))
         self.status.refresh_from_db()
         self.assertEqual(self.status.name, "Updated")
