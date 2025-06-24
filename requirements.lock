@@ -11,3 +11,4 @@ typing-extensions==4.14.0
 django-bootstrap5==25.1
 django-filter==24.1
 rollbar==0.16.3
+ruff==0.4.6
