@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+import rollbar
+from django.conf import settings
 
 
 load_dotenv()
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'task_manager.labels.apps.LabelsConfig',
     'task_manager.tasks.apps.TasksConfig',
     'django_filters',
+    'rollbar',
 ]
 
 MIDDLEWARE = [
@@ -59,9 +62,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
+
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN', ''),
+    'environment': os.getenv('ROLLBAR_ENV', 'development'),
+    'root': BASE_DIR,
+}
+
+if not settings.DEBUG:
+    rollbar.init(**ROLLBAR)
 
 TEMPLATES = [
     {

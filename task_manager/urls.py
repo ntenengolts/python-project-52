@@ -19,7 +19,12 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from task_manager.users.views import CustomLogoutView
+from django.http import HttpResponse
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return HttpResponse("OK")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +35,5 @@ urlpatterns = [
     path('statuses/', include('task_manager.statuses.urls')),
     path('tasks/', include('task_manager.tasks.urls')),
     path('labels/', include('task_manager.labels.urls')),
+    path("debug/", trigger_error),
 ]
