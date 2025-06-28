@@ -15,3 +15,6 @@ render-start:
 
 format:
 	black .
+
+start-server:
+	uv run python manage.py runserver 0.0.0.0.3000
