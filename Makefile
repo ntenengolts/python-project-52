@@ -1,5 +1,5 @@
 install:
-	uv pip install -r requirements.lock
+	uv sync
 
 collectstatic:
 	uv run python manage.py collectstatic --noinput
