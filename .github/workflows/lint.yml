@@ -16,9 +16,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install uv
-          uv pip install .
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -e .
           pip install ruff
 
       - name: Run ruff
-        run: ruff check .
+        run: |
+          source .venv/bin/activate
+          ruff check .
