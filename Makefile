@@ -9,7 +9,7 @@ migrate:
 	uv run python manage.py migrate
 
 test:
-	PYTHONPATH=./ uv run pytest -vv tests
+	uv run pytest -vv
 
 build:
 	./build.sh
