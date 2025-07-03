@@ -1,6 +1,5 @@
 install:
-	pip install uv
-	uv pip install .
+	uv sync
 
 collectstatic:
 	uv run python manage.py collectstatic --noinput
