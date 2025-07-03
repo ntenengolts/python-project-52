@@ -5,8 +5,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.contrib.auth.views import LoginView
 
-from .forms import CustomUserChangeForm, CustomUserCreationForm
+from .forms import CustomUserChangeForm, CustomUserCreationForm, CustomAuthenticationForm
 
 User = get_user_model()
 
@@ -51,3 +52,8 @@ class CustomLogoutView(View):
         logout(request)
         messages.success(request, "Вы разлогинились")
         return redirect("/")
+
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = "login.html"

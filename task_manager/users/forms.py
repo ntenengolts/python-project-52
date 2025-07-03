@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 User = get_user_model()
 
@@ -36,3 +36,14 @@ class CustomUserChangeForm(forms.ModelForm):
             "first_name": "Имя",
             "last_name": "Фамилия",
         }
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Имя пользователя",
+        widget=forms.TextInput(attrs={"placeholder": "Имя пользователя"})
+    )
+    password = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={"placeholder": "Пароль"})
+    )

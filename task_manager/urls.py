@@ -21,7 +21,7 @@ from django.http import HttpResponse
 from django.urls import include, path
 from django.views.generic import TemplateView
 
-from task_manager.users.views import CustomLogoutView
+from task_manager.users.views import CustomLogoutView, CustomLoginView
 
 
 def trigger_error(request):
@@ -34,7 +34,7 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("users/", include("task_manager.users.urls")),
     path(
-        "login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"
+        "login/", CustomLoginView.as_view(template_name="login.html"), name="login"
     ),
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("statuses/", include("task_manager.statuses.urls")),
