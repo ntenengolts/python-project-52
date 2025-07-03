@@ -61,3 +61,7 @@ class CustomLogoutView(View):
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
     template_name = "login.html"
+
+    def form_valid(self, form):
+        messages.success(self.request, "Вы залогинены")
+        return super().form_valid(form)
