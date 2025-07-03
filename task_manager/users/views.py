@@ -1,13 +1,17 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, logout
+from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-from django.contrib.auth.views import LoginView
 
-from .forms import CustomUserChangeForm, CustomUserCreationForm, CustomAuthenticationForm
+from .forms import (
+    CustomAuthenticationForm,
+    CustomUserChangeForm,
+    CustomUserCreationForm,
+)
 
 User = get_user_model()
 

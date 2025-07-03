@@ -16,12 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 from django.http import HttpResponse
 from django.urls import include, path
 from django.views.generic import TemplateView
 
-from task_manager.users.views import CustomLogoutView, CustomLoginView
+from task_manager.users.views import CustomLoginView, CustomLogoutView
 
 
 def trigger_error(request):
