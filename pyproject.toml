@@ -29,8 +29,8 @@ select = ["E", "F", "I"]  # ошибки, предупреждения, импо
 
 [tool.black]
 line-length = 88
-terget-version = ['py310']
-exlude = '''
+target-version = ['py310']
+exclude = '''
 /(
     migrations
   | \.venv
