@@ -7,6 +7,9 @@ collectstatic:
 migrate:
 	uv run python manage.py migrate
 
+test:
+	PYTHONPATH=./ uv run pytest -vv tests
+
 build:
 	./build.sh
 
