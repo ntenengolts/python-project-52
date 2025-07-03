@@ -54,7 +54,7 @@ class CustomLogoutView(View):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        messages.success(request, "Вы разлогинились")
+        messages.success(request, "Вы разлогинены")
         return redirect("/")
 
 
