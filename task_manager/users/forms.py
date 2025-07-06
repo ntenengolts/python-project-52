@@ -13,8 +13,6 @@ class CustomUserCreationForm(UserCreationForm):
             "username": "Имя пользователя",
             "first_name": "Имя",
             "last_name": "Фамилия",
-            "password1": "Пароль",
-            "password2": "Подтверждение пароля",
         }
         help_texts = {
             "username": (
@@ -25,6 +23,11 @@ class CustomUserCreationForm(UserCreationForm):
                 "Для подтверждения введите, пожалуйста, пароль ещё раз."
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password1"].label = "Пароль"
+        self.fields["password2"].label = "Подтверждение пароля"
 
 
 class CustomUserChangeForm(forms.ModelForm):
