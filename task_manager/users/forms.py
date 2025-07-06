@@ -67,7 +67,9 @@ class CustomUserChangeForm(forms.ModelForm):
 
         # Проверяем минимальную длину
         if password1 and len(password1) < 3:
-            raise forms.ValidationError("Ваш пароль должен содержать как минимум 3 символа.")
+            raise forms.ValidationError(
+                "Ваш пароль должен содержать как минимум 3 символа."
+            )
 
         return cleaned_data
 

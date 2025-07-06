@@ -35,14 +35,14 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     form_class = CustomUserChangeForm
     template_name = "user_form.html"
     success_url = reverse_lazy("users:list")
-    success_message = "Пользователь успешно обновлён"
+    success_message = "Пользователь успешно изменен"
 
 
 class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = User
     template_name = "user_confirm_delete.html"
     success_url = reverse_lazy("users:list")
-    success_message = "Пользователь успешно удалён"
+    success_message = "Пользователь успешно удален"
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
