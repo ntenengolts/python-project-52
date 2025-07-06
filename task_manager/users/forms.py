@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
             "username": "Имя пользователя",
             "first_name": "Имя",
             "last_name": "Фамилия",
-            "password": "Пароль",
+            "password1": "Пароль",
             "password2": "Подтверждение пароля",
         }
         help_texts = {
