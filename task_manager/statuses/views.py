@@ -28,14 +28,14 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = StatusForm
     template_name = "status_form.html"
     success_url = reverse_lazy("statuses:list")
-    success_message = "Статус успешно обновлён"
+    success_message = "Статус успешно изменен"
 
 
 class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = "status_confirm_delete.html"
     success_url = reverse_lazy("statuses:list")
-    success_message = "Статус успешно удалён"
+    success_message = "Статус успешно удален"
 
     def form_valid(self, form):
         try:
