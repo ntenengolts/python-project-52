@@ -7,3 +7,6 @@ class LabelForm(forms.ModelForm):
     class Meta:
         model = Label
         fields = ["name"]
+        labels = {
+            'name': 'Имя',
+        }
