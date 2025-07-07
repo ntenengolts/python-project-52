@@ -40,7 +40,7 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = TaskForm
     template_name = "tasks_form.html"
     success_url = reverse_lazy("tasks:list")
-    success_message = "Задача успешно обновлена"
+    success_message = "Задача успешно изменена"
 
 
 class TaskDeleteView(
@@ -55,5 +55,5 @@ class TaskDeleteView(
         return self.get_object().author == self.request.user
 
     def handle_no_permission(self):
-        messages.error(self.request, "Задачу может удалить только её автор")
+        messages.error(self.request, "Задачу может удалить только ее автор")
         return redirect(self.success_url)

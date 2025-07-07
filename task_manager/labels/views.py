@@ -32,7 +32,7 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("labels:list")
 
     def form_valid(self, form):
-        messages.success(self.request, "Метка успешно обновлена")
+        messages.success(self.request, "Метка успешно изменена")
         return super().form_valid(form)
 
 
@@ -46,7 +46,7 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         if label.tasks.exists():
             messages.error(
                 self.request,
-                "Невозможно удалить метку, так как она используется в задачах",
+                "Невозможно удалить метку, потому что она используется",
             )
             return redirect(self.success_url)
         messages.success(self.request, "Метка успешно удалена")
