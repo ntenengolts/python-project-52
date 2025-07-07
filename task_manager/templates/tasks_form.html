@@ -9,6 +9,8 @@
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <button type="submit" class="btn btn-primary">
+      {% if form.instance.pk %}Изменить{% else %}Создать{% endif %}
+    </button>
 </form>
 {% endblock %}

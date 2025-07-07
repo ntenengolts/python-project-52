@@ -2,7 +2,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h1>{% if form.instance.pk %}Изменить статус{% else %}Создать статус{% endif %}</h1>
+<h1>{% if form.instance.pk %}Изменение статуса{% else %}Создать статус{% endif %}</h1>
 <form method="post">
   {% csrf_token %}
   {% bootstrap_form form %}
