@@ -23,3 +23,10 @@ class TaskForm(forms.ModelForm):
         widgets = {
             "labels": forms.SelectMultiple(),
         }
+        labels = {
+            "name": "Имя",
+            "description": "Описание",
+            "status": "Статус",
+            "executor": "Исполнитель",
+            "labels": "Метки",
+        }
