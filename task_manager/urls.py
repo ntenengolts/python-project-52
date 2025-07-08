@@ -31,7 +31,7 @@ def trigger_error(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    path("users/", include("task_manager.users.urls")),
+    path("users/", include("task_manager.users.urls", namespace="users")),
     path(
         "login/", CustomLoginView.as_view(template_name="login.html"), name="login"
     ),
