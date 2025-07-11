@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from task_manager.mixins import SafeDeleteMixin, SelfOnlyMixin
+
 from .forms import (
     CustomAuthenticationForm,
     CustomUserChangeForm,
@@ -38,15 +40,9 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     success_message = "Пользователь успешно изменен"
 
 
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(SelfOnlyMixin, SafeDeleteMixin, DeleteView):
     model = User
-    template_name = "user_confirm_delete.html"
-    success_url = reverse_lazy("users:list")
-    success_message = "Пользователь успешно удален"
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().post(request, *args, **kwargs)
+    success_url = reverse_lazy('users')
 
 
 class CustomLogoutView(View):
