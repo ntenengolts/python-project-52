@@ -50,7 +50,6 @@ class SafeDeleteMixin:
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
-            messages.success(request, _("Пользователь успешно удален"))
             response = super().delete(request, *args, **kwargs)
             return response
         except ProtectedError:
