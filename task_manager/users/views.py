@@ -7,7 +7,11 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.mixins import ProtectedCheckMixin, SafeDeleteMixin
+from task_manager.mixins import (
+    ProtectedCheckMixin,
+    SafeDeleteMixin,
+    SelfOnlyMixin,
+)
 
 from .forms import (
     CustomAuthenticationForm,
@@ -41,6 +45,7 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
 
 
 class UserDeleteView(
+    SelfOnlyMixin,
     SuccessMessageMixin, ProtectedCheckMixin,
     SafeDeleteMixin, DeleteView
 ):
