@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.mixins import SafeDeleteMixin
+from task_manager.mixins import ProtectedCheckMixin, SafeDeleteMixin
 
 from .forms import (
     CustomAuthenticationForm,
@@ -40,7 +40,10 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     success_message = "Пользователь успешно изменен"
 
 
-class UserDeleteView(SuccessMessageMixin, ProtectedCheckMixin, SafeDeleteMixin, DeleteView):
+class UserDeleteView(
+    SuccessMessageMixin, ProtectedCheckMixin,
+    SafeDeleteMixin, DeleteView
+):
     model = User
     success_url = reverse_lazy('users:list')
     template_name = 'user_confirm_delete.html'
