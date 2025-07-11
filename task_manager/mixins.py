@@ -18,15 +18,42 @@ class SelfOnlyMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
+class ProtectedCheckMixin:
+    """
+    Если у пользователя есть связанные задачи, сразу прерываем
+    удаление (ещё на GET) и делаем редирект с флеш‑сообщением.
+    """
+    protected_error_url = reverse_lazy('users')
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self._has_related_objects():
+            messages.error(request,
+                _("Невозможно удалить пользователя, потому что он используется")
+            )
+
+            return redirect(self.protected_error_url)
+        return super().get(request, *args, **kwargs)
+
+    def _has_related_objects(self):
+        from task_manager.tasks.models import Task  # локальный импорт
+        return (
+            Task.objects.filter(author=self.object).exists()
+            or Task.objects.filter(executor=self.object).exists()
+        )
+
+
 class SafeDeleteMixin:
     """Удаляет объект и перехватывает ProtectedError."""
+    success_url = reverse_lazy('users')
     protected_error_url = reverse_lazy('users')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
+            response = super().delete(request, *args, **kwargs)
             messages.success(request, _("Пользователь успешно удален"))
-            return super().delete(request, *args, **kwargs)
+            return response
         except ProtectedError:
             messages.error(request,
                 _("Невозможно удалить пользователя, потому что он используется")
