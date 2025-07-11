@@ -40,7 +40,7 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     success_message = "Пользователь успешно изменен"
 
 
-class UserDeleteView(SuccessMessageMixin, SafeDeleteMixin, DeleteView):
+class UserDeleteView(SuccessMessageMixin, ProtectedCheckMixin, SafeDeleteMixin, DeleteView):
     model = User
     success_url = reverse_lazy('users:list')
     template_name = 'user_confirm_delete.html'
