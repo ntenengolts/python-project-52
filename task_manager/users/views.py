@@ -44,6 +44,7 @@ class UserDeleteView(SafeDeleteMixin, DeleteView):
     model = User
     success_url = reverse_lazy('users:list')
     template_name = 'user_confirm_delete.html'
+    success_message = "Пользователь успешно удален"
 
 
 class CustomLogoutView(View):
