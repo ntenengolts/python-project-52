@@ -44,7 +44,7 @@ class ProtectedCheckMixin:
 
 class SafeDeleteMixin:
     """Удаляет объект и перехватывает ProtectedError."""
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('users:list')
     protected_error_url = reverse_lazy('users:list')
 
     def delete(self, request, *args, **kwargs):
