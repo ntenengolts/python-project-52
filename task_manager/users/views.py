@@ -43,7 +43,7 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
 class UserDeleteView(SafeDeleteMixin, DeleteView):
     model = User
     success_url = reverse_lazy('users:list')
-    template_name = 'users/user_confirm_delete.html'
+    template_name = 'user_confirm_delete.html'
 
 
 class CustomLogoutView(View):
