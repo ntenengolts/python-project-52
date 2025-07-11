@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
@@ -52,7 +53,11 @@ class UserDeleteView(
     model = User
     success_url = reverse_lazy('users:list')
     template_name = 'user_confirm_delete.html'
-    success_message = "Пользователь успешно удален"
+    protected_error_url = success_url
+    protected_error_message = _(
+        "Невозможно удалить пользователя, потому что он используется"
+    )
+    success_message = _("Пользователь успешно удален")
 
 
 class CustomLogoutView(View):

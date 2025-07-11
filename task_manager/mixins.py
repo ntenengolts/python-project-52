@@ -44,17 +44,23 @@ class ProtectedCheckMixin:
 
 
 class SafeDeleteMixin:
-    """Удаляет объект и перехватывает ProtectedError."""
-    success_url = reverse_lazy('users:list')
-    protected_error_url = reverse_lazy('users:list')
+    """
+    Ловит ProtectedError и выводит сообщение.
+    Конкретные view могут переопределять:
+      • success_url            – куда редирект при успешном удалении
+      • protected_error_url    – куда редирект при ошибке
+      • protected_error_message – текст сообщения
+    """
+    success_url = None                # обязателен в наследнике
+    protected_error_url = None        # если None – берётся success_url
+    protected_error_message = _(
+        "Невозможно удалить объект, потому что он используется"
+    )
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
-            response = super().delete(request, *args, **kwargs)
-            return response
+            return super().delete(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request,
-                _("Невозможно удалить пользователя, потому что он используется")
-            )
-            return redirect(self.protected_error_url)
+            messages.error(request, self.protected_error_message)
+            return redirect(self.protected_error_url or self.success_url)
