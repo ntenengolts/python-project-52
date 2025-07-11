@@ -12,7 +12,7 @@ class SelfOnlyMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user != self.get_object():
             messages.error(request,
-                _("У вас нет прав для удаления другого пользователя.")
+                _("У вас нет прав для изменения")
             )
             return redirect(self.permission_denied_url)
         return super().dispatch(request, *args, **kwargs)
