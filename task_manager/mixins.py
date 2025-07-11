@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 class SelfOnlyMixin:
     """Разрешает действие только над собственным объектом."""
-    permission_denied_url = reverse_lazy('users')
+    permission_denied_url = reverse_lazy('users:list')
 
     def dispatch(self, request, *args, **kwargs):
         if request.user != self.get_object():
@@ -23,7 +23,7 @@ class ProtectedCheckMixin:
     Если у пользователя есть связанные задачи, сразу прерываем
     удаление (ещё на GET) и делаем редирект с флеш‑сообщением.
     """
-    protected_error_url = reverse_lazy('users')
+    protected_error_url = reverse_lazy('users:list')
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -46,7 +46,7 @@ class ProtectedCheckMixin:
 class SafeDeleteMixin:
     """Удаляет объект и перехватывает ProtectedError."""
     success_url = reverse_lazy('users')
-    protected_error_url = reverse_lazy('users')
+    protected_error_url = reverse_lazy('users:list')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
