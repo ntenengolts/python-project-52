@@ -58,7 +58,3 @@ class SafeDeleteMixin:
                 _("Невозможно удалить пользователя, потому что он используется")
             )
             return redirect(self.protected_error_url)
-
-    # Тест кликает по GET → сразу удаляем
-    def get(self, request, *args, **kwargs):
-        return self.delete(request, *args, **kwargs)
