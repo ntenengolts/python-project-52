@@ -5,3 +5,5 @@
 
 [![Sonar Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ntenengolts_python-project-52&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ntenengolts_python-project-52)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ntenengolts_python-project-52&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ntenengolts_python-project-52)
+
+[Посмотреть приложение на Render](https://python-project-52-t7l1.onrender.com)

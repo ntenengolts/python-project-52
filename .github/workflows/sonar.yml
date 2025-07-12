@@ -26,11 +26,10 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@master
         with:
           projectBaseDir: .
-        env:
-          SONAR_HOST_URL: https://sonarcloud.io
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
           args: >
             -Dsonar.projectKey=ntenengolts_python-project-52
             -Dsonar.organization=ntenengolts
             -Dsonar.python.coverage.reportPaths=coverage.xml
+        env:
+          SONAR_HOST_URL: https://sonarcloud.io
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
