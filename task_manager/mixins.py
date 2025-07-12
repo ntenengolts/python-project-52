@@ -57,6 +57,13 @@ class SafeDeleteMixin:
         "Невозможно удалить объект, потому что он используется"
     )
 
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.protected_error_message)
+            return redirect(self.protected_error_url or self.success_url)
+
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
