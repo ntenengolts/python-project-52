@@ -11,7 +11,9 @@ class StatusCRUDTests(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create_user(username="testuser", password="pass")
+        cls.user = User.objects.create_user(
+            username="testuser", password="pass"
+        )
         cls.status = Status.objects.create(name="In Progress")
 
     def setUp(self):
@@ -29,14 +31,18 @@ class StatusCRUDTests(TestCase):
 
     def test_update_status(self):
         response = self.client.post(
-            reverse("statuses:update", args=[self.status.id]), {"name": "Updated"}
+            reverse("statuses:update",
+            args=[self.status.id]),
+            {"name": "Updated"}
         )
         self.assertRedirects(response, reverse("statuses:list"))
         self.status.refresh_from_db()
         self.assertEqual(self.status.name, "Updated")
 
     def test_delete_status(self):
-        response = self.client.post(reverse("statuses:delete", args=[self.status.id]))
+        response = self.client.post(
+            reverse("statuses:delete", args=[self.status.id])
+        )
         self.assertRedirects(response, reverse("statuses:list"))
         self.assertFalse(Status.objects.filter(id=self.status.id).exists())
 

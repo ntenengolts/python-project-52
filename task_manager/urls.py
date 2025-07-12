@@ -33,7 +33,9 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("users/", include("task_manager.users.urls", namespace="users")),
     path(
-        "login/", CustomLoginView.as_view(template_name="login.html"), name="login"
+        "login/",
+        CustomLoginView.as_view(template_name="login.html"),
+        name="login"
     ),
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("statuses/", include("task_manager.statuses.urls")),

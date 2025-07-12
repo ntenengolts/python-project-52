@@ -8,7 +8,9 @@ from .models import Task
 
 class TaskForm(forms.ModelForm):
     status = forms.ModelChoiceField(
-        queryset=Status.objects.all(), label="Статус", empty_label="Выберите статус"
+        queryset=Status.objects.all(),
+        label="Статус",
+        empty_label="Выберите статус"
     )
     executor = forms.ModelChoiceField(
         queryset=User.objects.all(),

@@ -8,7 +8,13 @@ User = get_user_model()
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "username", "password1", "password2"]
+        fields = [
+            "first_name",
+            "last_name",
+            "username",
+            "password1",
+            "password2"
+        ]
         labels = {
             "username": "Имя пользователя",
             "first_name": "Имя",

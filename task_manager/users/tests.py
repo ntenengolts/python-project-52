@@ -50,7 +50,10 @@ class UserCRUDTests(TestCase):
         self.assertEqual(user.email, "updated@example.com")
 
     def test_delete_user(self):
-        user = User.objects.create_user(username="todelete", password="VerySecure123")
+        user = User.objects.create_user(
+            username="todelete",
+            password="VerySecure123"
+        )
         self.client.force_login(user)
         response = self.client.post(reverse("users:delete", args=[user.id]))
         self.assertRedirects(response, reverse("users:list"))
