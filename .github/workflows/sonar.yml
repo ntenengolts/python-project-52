@@ -29,3 +29,7 @@ jobs:
         env:
           SONAR_HOST_URL: https://sonarcloud.io
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=ntenengolts_python-project-52
+            -Dsonar.organization=ntenengolts
