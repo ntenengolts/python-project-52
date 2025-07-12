@@ -48,3 +48,4 @@ packages = ["task_manager"]
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "task_manager.settings"
 python_files = ["*_test.py", "test_*.py", "testing/python/*.py"]
+testpaths = ["task_manager/users/tests.py", "task_manager/tasks/tests.py", "task_manager/statuses/tests.py"]

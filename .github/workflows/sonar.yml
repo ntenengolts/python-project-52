@@ -33,3 +33,4 @@ jobs:
           args: >
             -Dsonar.projectKey=ntenengolts_python-project-52
             -Dsonar.organization=ntenengolts
+            -Dsonar.python.coverage.reportPaths=coverage.xml
